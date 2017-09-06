@@ -12,7 +12,6 @@ import javax.sql.DataSource;
  * @author Kj Nam
  */
 @Configuration
-@EnableAuthorizationServer
 public class AuthorizationServerConfiguration {
 
     @Bean
