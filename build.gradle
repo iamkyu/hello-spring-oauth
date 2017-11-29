@@ -35,6 +35,27 @@ configure(allprojects) {
         all*.exclude group: 'commons-logging', module: 'commons-logging' // replaced with jcl-over-slf4j
         all*.exclude group: 'log4j', module: 'log4j' // replaced with log4j-over-slf4j
     }
+
+    task initSrc {
+        doLast {
+            project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { dir ->
+                dir.mkdirs()
+            }
+        }
+    }
+}
+
+project(':oauth2-server') {
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-starter-jdbc'
+        compile 'org.springframework.boot:spring-boot-starter-security'
+
+        compile 'org.springframework.security.oauth:spring-security-oauth2'
+        compile 'org.springframework.security:spring-security-jwt'
+
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+    }
 }
 
 project(':api-server') {
