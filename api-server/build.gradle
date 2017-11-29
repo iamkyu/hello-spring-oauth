@@ -1,0 +1,7 @@
+task initSrc {
+    doLast {
+        project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { dir ->
+            dir.mkdirs()
+        }
+    }
+}

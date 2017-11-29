@@ -1,0 +1,53 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+configure(allprojects) {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "io.spring.dependency-management"
+
+    group = 'io.iamkyu'
+    version = '1.0.0-SNAPSHOT'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'org.projectlombok:lombok:1.16.6'
+        runtime 'com.h2database:h2:1.4.190'
+    }
+
+    configurations {
+        all*.exclude group: 'commons-logging', module: 'commons-logging' // replaced with jcl-over-slf4j
+        all*.exclude group: 'log4j', module: 'log4j' // replaced with log4j-over-slf4j
+    }
+}
+
+project(':api-server') {
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+        compile 'org.springframework.boot:spring-boot-starter-data-rest'
+        compile 'org.springframework.boot:spring-boot-starter-security'
+
+        compile 'org.springframework.security.oauth:spring-security-oauth2'
+        compile 'org.springframework.data:spring-data-rest-hal-browser'
+        compile 'org.springframework.security:spring-security-jwt'
+
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+}
