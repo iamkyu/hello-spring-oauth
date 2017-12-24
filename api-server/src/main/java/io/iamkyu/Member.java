@@ -19,6 +19,9 @@ public class Member {
 
     String remark;
 
+    protected Member() {
+    }
+
     public Member(String name, String userName, String remark) {
         this.name = name;
         this.userName = userName;
