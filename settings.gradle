@@ -1,4 +1,5 @@
 rootProject.name = 'hello-spring-oauth'
 include 'api-server'
 include 'oauth2-server'
+include 'my-auth-server'
 
