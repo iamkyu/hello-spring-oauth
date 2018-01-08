@@ -30,10 +30,13 @@ public class TokenService {
     public AccessToken allocateToken(UserCredentials userCredentials) throws BadCredentialsException {
         User user = userService.userAuthentication(userCredentials);
 
-        return new AccessToken(
+        AccessToken accessToken = new AccessToken(
                 UUID.randomUUID().toString(),
                 AccessToken.TOKEN_TYPE_BEARER,
-                new RefreshToken(),
+                new RefreshToken(UUID.randomUUID().toString()),
                 Date.from(Instant.now()));
+
+        tokenJdbcRepository.save(user, accessToken);
+        return accessToken;
     }
 }
