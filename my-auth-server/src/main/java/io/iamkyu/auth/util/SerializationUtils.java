@@ -9,7 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * @author Kj Nam
+ *
+ * @see <a href="https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/main/java/org/springframework/security/oauth2/common/util/SerializationUtils.java">spring-security-oauth</a>
  */
 public class SerializationUtils {
 
